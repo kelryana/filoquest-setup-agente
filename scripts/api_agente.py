@@ -7,7 +7,7 @@ import sys
 import logging
 from pathlib import Path
 
-# Configuração de logs (para você ver o que está acontecendo)
+# Configuração de logs
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ from busca_filosofica import BuscaFilosofica
 # Cria a aplicação FastAPI
 app = FastAPI(title="Agente Filósofo API")
 
-# Configura CORS para permitir requisições do frontend
+# Configura CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,7 +29,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inicializar o buscador uma única vez
+# Inicializar o buscador uma única vez (Verifica se o arquivo existe)
 logger.info("🔍 Inicializando buscador filosófico...")
 try:
     buscador = BuscaFilosofica('embeddings_filosofia.json')
@@ -38,30 +38,26 @@ except Exception as e:
     logger.warning(f"⚠️ Aviso: Buscador não pôde ser inicializado: {e}")
     buscador = None
 
-# Define o formato da pergunta que a API vai receber
+# Define o formato da pergunta
 class Pergunta(BaseModel):
     texto: str
 
 def perguntar_ao_filosofo(pergunta: str, contexto: str = None) -> str:
     url = "http://localhost:11434/api/generate"
 
-    # Monta o System Prompt COM o contexto injetado (se existir)
     if contexto:
         prompt = f"""Você é um filósofo especialista em ética e filosofia moral.
-Você tem acesso a textos filosóficos relevantes que foram recuperados para ajudar na resposta.
 
-=== CONTEXTO RECUPERADO DOS TEXTOS FILOSÓFICOS ===
+Você teve acesso a textos filosóficos relevantes para embasar seu conhecimento.
+Use o conteúdo desses textos para formar sua resposta, mas responda com suas próprias palavras, de forma natural, clara e didática, como se você tivesse estudado o assunto há anos. Não copie os textos literalmente.
+Use o seguinte contexto para responder:
+
 {contexto}
-=== FIM DO CONTEXTO ===
-
-Com base no contexto acima, responda à pergunta de forma clara, didática e fundamentada.
-Se o contexto trouxer informações de filósofos específicos, mencione-os na resposta.
 
 Pergunta: {pergunta}
 
 Resposta:"""
     else:
-        # Fallback sem contexto (caso a busca falhe)
         prompt = f"""Você é um filósofo. Responda à pergunta de forma clara e didática:
 
 Pergunta: {pergunta}
@@ -93,7 +89,6 @@ def responder(pergunta: Pergunta):
     contexto = ""
     resultados_busca = []
 
-    # Passo 1: Buscar contexto relevante usando o mecanismo híbrido
     if buscador:
         try:
             logger.info(f"🔍 Buscando contexto para: '{pergunta.texto}'")
@@ -117,11 +112,9 @@ def responder(pergunta: Pergunta):
     else:
         logger.warning("⚠️ Buscador não disponível")
 
-    # Passo 2: Chamar a IA com o contexto injetado
     logger.info("🤖 Consultando o filósofo IA...")
     resposta = perguntar_ao_filosofo(pergunta.texto, contexto)
 
-    # Retorna os dados com a resposta
     return {
         "pergunta": pergunta.texto,
         "resposta": resposta,
