@@ -1,10 +1,21 @@
+##scripts/api_agente.py
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
 import uvicorn
 
 # Cria a aplicação FastAPI
 app = FastAPI(title="Agente Filósofo API")
+
+# Configura CORS para permitir requisições do frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Em produção, especifique os domínios permitidos
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos (GET, POST, OPTIONS, etc.)
+    allow_headers=["*"],  # Permite todos os headers
+)
 
 # Define o formato da pergunta que a API vai receber
 class Pergunta(BaseModel):
@@ -13,21 +24,21 @@ class Pergunta(BaseModel):
 def perguntar_ao_filosofo(pergunta: str) -> str:
     """Envia pergunta para o Qwen via Ollama"""
     url = "http://localhost:11434/api/generate"
-    
+
     # Dá uma "personalidade" de filósofo para o modelo
     prompt = f"""Você é um filósofo. Responda à pergunta de forma clara e didática:
 
 Pergunta: {pergunta}
 
 Resposta:"""
-    
+
     payload = {
         "model": "qwen2.5:3b",  # O modelo que você baixou
         "prompt": prompt,
         "stream": False,
         "temperature": 0.7
     }
-    
+
     try:
         response = requests.post(url, json=payload, timeout=60)
         response.raise_for_status()
