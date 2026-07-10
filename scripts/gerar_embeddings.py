@@ -1,6 +1,7 @@
 ##scripts/gerar_embeddings.py
 
 import json
+import torch
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
@@ -14,10 +15,12 @@ def load_chunked_text(filepath):
 def generate_embeddings(chunks, model_name='all-MiniLM-L6-v2'):
 
     print(f"Carregando modelo: {model_name}")
-    # Forçar uso de CPU para evitar problemas de memória com GPU
-    import torch
-    device = 'cpu'
+   
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print(f"🔧 Usando dispositivo: {device.upper()}")
+
     model = SentenceTransformer(model_name, device=device)
+    print(f"Modelo carregado com sucesso: {model_name} (dimensão do embedding: {model.get_sentence_embedding_dimension()})")
 
     # Extrair apenas os textos
     texts = [chunk['text'] for chunk in chunks]
@@ -42,10 +45,12 @@ def generate_embeddings(chunks, model_name='all-MiniLM-L6-v2'):
 
 
 def main():
-    """Função principal da Fase 2."""
 
     # Diretórios
-    docs_dir = Path('/workspace/docs')
+    BASE_DIR = Path(__file__).parent.parent
+    docs_dir = BASE_DIR / 'docs'
+
+    # Definição dos arquivos de entrada e saída (O QUE ESTAVA FALTANDO)
     input_file = docs_dir / 'texto_filosofico_fatiado.json'
     output_file = docs_dir / 'embeddings_filosofia.json'
 
@@ -76,7 +81,6 @@ def main():
     print(f"  - Tamanho do arquivo: {total_size_mb:.2f} MB")
     print("\nFase 2 concluída com sucesso!")
     print("=" * 60)
-
 
 if __name__ == '__main__':
     main()

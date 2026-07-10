@@ -1,9 +1,11 @@
 ##scripts/busca_filosofica.py
 
 import json
+import torch
 import numpy as np
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
+from pathlib import Path
 
 
 class BuscaFilosofica:
@@ -11,7 +13,8 @@ class BuscaFilosofica:
 
     def __init__(self, embeddings_file, model_name='all-MiniLM-L6-v2'):
       
-        self.docs_dir = Path('/workspace/docs')
+        BASE_DIR = Path(__file__).parent.parent 
+        self.docs_dir = BASE_DIR / 'docs' 
         self.embeddings_file = self.docs_dir / embeddings_file
         self.chunked_file = self.docs_dir / 'texto_filosofico_fatiado.json'
 
@@ -26,7 +29,7 @@ class BuscaFilosofica:
 
         # Carregar modelo para gerar embeddings de queries
         print(f"Carregando modelo: {model_name}")
-        import torch
+        
         self.model = SentenceTransformer(model_name, device='cpu')
 
         # Pré-computar matriz de embeddings para eficiência

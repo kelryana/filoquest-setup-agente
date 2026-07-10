@@ -8,11 +8,12 @@ from sentence_transformers import SentenceTransformer
 
 
 class ValidadorBuscas:
-    """Classe que valida os resultados das buscas."""
 
     def __init__(self, embeddings_file, gabarito_file):
-        
-        self.docs_dir = Path('/workspace/docs')
+
+        BASE_DIR = Path(__file__).parent.parent
+        self.docs_dir = BASE_DIR / 'docs'
+    
         self.embeddings_file = self.docs_dir / embeddings_file
         self.gabarito_file = self.docs_dir / gabarito_file
         self.chunked_file = self.docs_dir / 'texto_filosofico_fatiado.json'
@@ -145,7 +146,7 @@ class ValidadorBuscas:
         return results[:top_k], elapsed
 
     def busca_hibrida(self, query, top_k=1, rag_weight=0.7, grep_weight=0.3):
-        """Busca híbrida combinando RAG e Grep."""
+
         start_time = time.time()
 
         rag_results, _ = self.busca_rag(query, top_k=top_k * 2)
@@ -194,10 +195,7 @@ class ValidadorBuscas:
         return final_results, elapsed
 
     def _calcular_similaridade_texto(self, texto1, texto2):
-        """
-        Calcula similaridade semântica entre dois textos usando embeddings.
-        Retorna valor entre 0 e 1.
-        """
+        
         emb1 = self.model.encode(texto1, convert_to_numpy=True)
         emb2 = self.model.encode(texto2, convert_to_numpy=True)
 
@@ -319,7 +317,8 @@ def main():
     resultados = validador.executar_validacao()
 
     # Salvar resultados para a Fase 5
-    output_file = Path('/workspace/docs/resultados_validacao.json')
+    BASE_DIR = Path(__file__).parent.parent
+    output_file = BASE_DIR / 'docs' / 'resultados_validacao.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(resultados, f, ensure_ascii=False, indent=2)
 

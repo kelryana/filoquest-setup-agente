@@ -73,12 +73,11 @@ def process_file(filepath, chunk_method='words', chunk_size=150):
 
     return result
 
-
 def main():
-    """Função principal que processa todos os arquivos de texto filosófico."""
-
+    
     # Diretórios
-    docs_dir = Path('/workspace/docs')
+    BASE_DIR = Path(__file__).parent.parent
+    docs_dir = BASE_DIR / 'docs'
     output_file = docs_dir / 'texto_filosofico_fatiado.json'
 
     # Arquivos de texto para processar

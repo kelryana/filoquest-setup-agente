@@ -1,0 +1,89 @@
+{
+  "RAG": {
+    "acertos": 3,
+    "erros": 0,
+    "tempos": [
+      0.03410983085632324,
+      0.023636817932128906,
+      0.024029254913330078
+    ],
+    "detalhes": [
+      {
+        "pergunta": "O que Kant diz sobre a lei universal?",
+        "acertou": true,
+        "tempo": 0.03410983085632324,
+        "resultado": "como condição suprema de seu acordo com a razão prática universal, o mesmo é dizer, a idéia da vonta"
+      },
+      {
+        "pergunta": "Qual o princípio da utilidade segundo Bentham?",
+        "acertou": true,
+        "tempo": 0.023636817932128906,
+        "resultado": "Capítulo I: Do Princípio da Utilidade I. A natureza colocou a humanidade sob o domínio de dois senho"
+      },
+      {
+        "pergunta": "O que é a virtude para Aristóteles?",
+        "acertou": true,
+        "tempo": 0.024029254913330078,
+        "resultado": "LIVRO II 1 Sendo, pois, de duas espécies a virtude, intelectual e moral, a primeira, por via de regr"
+      }
+    ]
+  },
+  "GREP": {
+    "acertos": 1,
+    "erros": 2,
+    "tempos": [
+      0.0027751922607421875,
+      0.0025463104248046875,
+      0.0019812583923339844
+    ],
+    "detalhes": [
+      {
+        "pergunta": "O que Kant diz sobre a lei universal?",
+        "acertou": false,
+        "tempo": 0.0027751922607421875,
+        "resultado": "pena expor estes conceitos sob forma universal (in abstracto). tais como existem a priori, juntament"
+      },
+      {
+        "pergunta": "Qual o princípio da utilidade segundo Bentham?",
+        "acertou": false,
+        "tempo": 0.0025463104248046875,
+        "resultado": "no meio-termo. Por outro lado, é possível errar de muitos modos (pois o mal pertence à classe do ili"
+      },
+      {
+        "pergunta": "O que é a virtude para Aristóteles?",
+        "acertou": true,
+        "tempo": 0.0019812583923339844,
+        "resultado": "LIVRO II 1 Sendo, pois, de duas espécies a virtude, intelectual e moral, a primeira, por via de regr"
+      }
+    ]
+  },
+  "HIBRIDA": {
+    "acertos": 3,
+    "erros": 0,
+    "tempos": [
+      0.027220487594604492,
+      0.029079198837280273,
+      0.025771617889404297
+    ],
+    "detalhes": [
+      {
+        "pergunta": "O que Kant diz sobre a lei universal?",
+        "acertou": true,
+        "tempo": 0.027220487594604492,
+        "resultado": "como condição suprema de seu acordo com a razão prática universal, o mesmo é dizer, a idéia da vonta"
+      },
+      {
+        "pergunta": "Qual o princípio da utilidade segundo Bentham?",
+        "acertou": true,
+        "tempo": 0.029079198837280273,
+        "resultado": "Capítulo I: Do Princípio da Utilidade I. A natureza colocou a humanidade sob o domínio de dois senho"
+      },
+      {
+        "pergunta": "O que é a virtude para Aristóteles?",
+        "acertou": true,
+        "tempo": 0.025771617889404297,
+        "resultado": "LIVRO II 1 Sendo, pois, de duas espécies a virtude, intelectual e moral, a primeira, por via de regr"
+      }
+    ]
+  }
+}
