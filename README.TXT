@@ -1,5 +1,3 @@
----
-
 # Teste - Twine + IA
 
 ## 📂 Estrutura do Projeto
@@ -22,8 +20,6 @@ filoquest-twine_teste/
 └── README.md                 # Este arquivo
 ```
 
----
-
 ## ⚙️ Pré-requisitos
 
 Antes de rodar o projeto, você precisa ter instalado:
@@ -34,8 +30,6 @@ Antes de rodar o projeto, você precisa ter instalado:
    ```bash
    curl -fsSL https://ollama.com/install.sh | sh
    ```
-
----
 
 ## 🚀 Como configurar o ambiente (Passo a passo)
 
@@ -64,7 +58,6 @@ pip install -r requirements.txt
    ```
 3. Cole o token quando solicitado.
 
----
 
 ## 🧪 Como testar o projeto
 
@@ -86,7 +79,6 @@ python3 scripts/twine_embeddings.py
 ```
 **Resultado esperado:** `✅ Embeddings gerados para 6 passagens` e o arquivo `docs/embeddings.json` gerado.
 
----
 
 ## 🤖 Rodando o Agente Filósofo e a API
 
@@ -111,7 +103,6 @@ python3 api_agente.py
 ### Passo 4: Teste a API no navegador
 Abra `http://localhost:8000/docs` e clique em **POST /perguntar**. Digite uma pergunta filosófica no campo `texto` e veja a resposta.
 
----
 
 ## 🌐 Space no Hugging Face
 
@@ -119,7 +110,6 @@ O projeto também está hospedado em um **Space** no Hugging Face, onde você po
 
 **Acesse:** `https://huggingface.co/spaces/aninnnha/filoquest-demo-estudo`
 
----
 
 ## 🛠️ Tecnologias Utilizadas
 
