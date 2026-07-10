@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente Filósofo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <i class="fas fa-owl header-icon"></i>
+            <h1>Agente Filósofo</h1>
+            <p class="subtitle">Reflexões e sabedoria através da inteligência artificial</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="pergunta"><i class="fas fa-question-circle"></i> Sua Pergunta:</label>
+                <textarea
+                    id="pergunta"
+                    placeholder="Digite sua questão filosófica aqui..."
+                    rows="4"
+                ></textarea>
+                <button id="btn-perguntar" onclick="enviarPergunta()">
+                    <i class="fas fa-paper-plane"></i> Perguntar ao Filósofo
+                </button>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>O filósofo está refletindo...</span>
+            </div>
+
+            <div id="resposta-container" class="resposta-container hidden">
+                <div class="resposta-header">
+                    <i class="fas fa-scroll"></i>
+                    <h2>Resposta do Filósofo</h2>
+                </div>
+                <div id="resposta-texto" class="resposta-texto"></div>
+            </div>
+
+            <div id="erro-container" class="erro-container hidden">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="erro-mensagem"></span>
+            </div>
+        </main>
+
+        <footer>
+            <p><i class="fas fa-brain"></i> Powered by Ollama & Qwen 2.5</p>
+            <p class="disclaimer">As respostas são geradas por IA e devem ser consideradas como reflexões, não como verdades absolutas.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
