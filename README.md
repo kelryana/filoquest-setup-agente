@@ -484,13 +484,6 @@ Interface web moderna para interação com o sistema de busca.
 1. Abra o arquivo `frontend/index.html` em um navegador moderno
 2. Digite perguntas ou termos filosóficos na barra de busca
 3. Visualize os resultados com as similaridades
-
-**Funcionalidades:**
-- Interface responsiva e moderna
-- Busca em tempo real
-- Exibição de chunks relevantes com destaque
-- Comparação visual dos métodos de busca
-
 ---
 
 ## 🔬 Fluxo de Trabalho Completo
@@ -545,12 +538,6 @@ ollama pull qwen2.5:3b
 pip install -r requirements.txt --upgrade
 ```
 
-### CUDA/GPU não detectado
-Os scripts funcionam sem GPU, mas mais lentamente. Para ativar:
-- Verifique se os drivers NVIDIA estão instalados
-- Confirme que `nvidia-smi` funciona
-- O PyTorch já deve detectar automaticamente
-
 ### Arquivo HTML do Twine não encontrado
 - Certifique-se de que o caminho no script `extract_twine.py` aponta para o arquivo correto
 - Os arquivos de exemplo estão em `docs/`
@@ -562,24 +549,6 @@ Os scripts funcionam sem GPU, mas mais lentamente. Para ativar:
 ### Erro de memória ao gerar embeddings
 - Reduza o batch size no script `gerar_embeddings.py`
 - Use `device='cpu'` se estiver com pouca VRAM na GPU
-
----
-
-## 🤝 Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para:
-
-1. Fazer fork do projeto
-2. Criar uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Commitar suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abrir um Pull Request
-
----
-
-## 📄 Licença
-
-Este projeto está sob licença aberta. Sinta-se livre para usar, modificar e distribuir.
 
 ---
 
