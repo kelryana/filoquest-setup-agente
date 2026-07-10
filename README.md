@@ -49,8 +49,8 @@ Este projeto oferece duas funcionalidades principais:
 └── docs/                    # Arquivos de narrativas e dados
     ├── "Dilema do Bonde - Uma Jornada Etica.html"
     ├── "O Gabarito.html"
-    ├── passagens.json       # (gerado) Passagens extraídas
-    └── embeddings.json      # (gerado) Embeddings das passagens
+    ├── passagens.json       # (para quando for gerado gerado) Passagens extraídas
+    └── embeddings.json      # (para quandor for gerado) Embeddings das passagens
 ```
 
 ---
