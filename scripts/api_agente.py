@@ -1,9 +1,21 @@
-##scripts/api_agente.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import requests
 import uvicorn
+import sys
+import logging
+from pathlib import Path
+
+# Configuração de logs (para você ver o que está acontecendo)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Adicionar o diretório scripts ao path para importar busca_filosofica
+sys.path.insert(0, str(Path(__file__).parent))
+
+# Importa a sua classe de busca
+from busca_filosofica import BuscaFilosofica
 
 # Cria a aplicação FastAPI
 app = FastAPI(title="Agente Filósofo API")
@@ -11,29 +23,53 @@ app = FastAPI(title="Agente Filósofo API")
 # Configura CORS para permitir requisições do frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Em produção, especifique os domínios permitidos
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos os métodos (GET, POST, OPTIONS, etc.)
-    allow_headers=["*"],  # Permite todos os headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+# Inicializar o buscador uma única vez
+logger.info("🔍 Inicializando buscador filosófico...")
+try:
+    buscador = BuscaFilosofica('embeddings_filosofia.json')
+    logger.info("✅ Buscador inicializado com sucesso!")
+except Exception as e:
+    logger.warning(f"⚠️ Aviso: Buscador não pôde ser inicializado: {e}")
+    buscador = None
 
 # Define o formato da pergunta que a API vai receber
 class Pergunta(BaseModel):
     texto: str
 
-def perguntar_ao_filosofo(pergunta: str) -> str:
-    
+def perguntar_ao_filosofo(pergunta: str, contexto: str = None) -> str:
     url = "http://localhost:11434/api/generate"
 
-    # Dá uma "personalidade" de filósofo para o modelo
-    prompt = f"""Você é um filósofo. Responda à pergunta de forma clara e didática:
+    # Monta o System Prompt COM o contexto injetado (se existir)
+    if contexto:
+        prompt = f"""Você é um filósofo especialista em ética e filosofia moral.
+Você tem acesso a textos filosóficos relevantes que foram recuperados para ajudar na resposta.
+
+=== CONTEXTO RECUPERADO DOS TEXTOS FILOSÓFICOS ===
+{contexto}
+=== FIM DO CONTEXTO ===
+
+Com base no contexto acima, responda à pergunta de forma clara, didática e fundamentada.
+Se o contexto trouxer informações de filósofos específicos, mencione-os na resposta.
+
+Pergunta: {pergunta}
+
+Resposta:"""
+    else:
+        # Fallback sem contexto (caso a busca falhe)
+        prompt = f"""Você é um filósofo. Responda à pergunta de forma clara e didática:
 
 Pergunta: {pergunta}
 
 Resposta:"""
 
     payload = {
-        "model": "qwen2.5:3b",  # O modelo que você baixou
+        "model": "qwen2.5:3b",
         "prompt": prompt,
         "stream": False,
         "temperature": 0.7
@@ -48,17 +84,50 @@ Resposta:"""
     except Exception as e:
         return f"❌ Erro: {str(e)}"
 
-# Rota raiz (só para testar se a API está no ar)
 @app.get("/")
 def root():
     return {"mensagem": "API do Agente Filósofo. Use POST /perguntar com JSON: {'texto': 'sua pergunta'}"}
 
-# Rota principal: recebe a pergunta e devolve a resposta
 @app.post("/perguntar")
 def responder(pergunta: Pergunta):
-    resposta = perguntar_ao_filosofo(pergunta.texto)
-    return {"pergunta": pergunta.texto, "resposta": resposta}
+    contexto = ""
+    resultados_busca = []
 
-# Só roda o servidor se executar este arquivo diretamente
+    # Passo 1: Buscar contexto relevante usando o mecanismo híbrido
+    if buscador:
+        try:
+            logger.info(f"🔍 Buscando contexto para: '{pergunta.texto}'")
+            resultados_busca = buscador.busca_hibrida(pergunta.texto, top_k=3)
+
+            if resultados_busca:
+                contextos = []
+                for i, resultado in enumerate(resultados_busca, 1):
+                    fonte = resultado.get('source_file', 'Desconhecida')
+                    texto = resultado.get('text', '')
+                    score = resultado.get('score', 0)
+                    contextos.append(f"[Fonte {i}: {fonte}] (Score: {score:.4f})\n{texto}\n")
+
+                contexto = "\n---\n".join(contextos)
+                logger.info(f"✅ Contexto encontrado: {len(contexto)} caracteres")
+            else:
+                logger.warning("⚠️ Nenhum contexto relevante encontrado")
+        except Exception as e:
+            logger.error(f"⚠️ Erro na busca: {e}")
+            contexto = ""
+    else:
+        logger.warning("⚠️ Buscador não disponível")
+
+    # Passo 2: Chamar a IA com o contexto injetado
+    logger.info("🤖 Consultando o filósofo IA...")
+    resposta = perguntar_ao_filosofo(pergunta.texto, contexto)
+
+    # Retorna os dados com a resposta
+    return {
+        "pergunta": pergunta.texto,
+        "resposta": resposta,
+        "contexto_usado": bool(contexto),
+        "fontes": [r.get('source_file', '') for r in resultados_busca] if resultados_busca else []
+    }
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
