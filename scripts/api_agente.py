@@ -22,7 +22,7 @@ class Pergunta(BaseModel):
     texto: str
 
 def perguntar_ao_filosofo(pergunta: str) -> str:
-    """Envia pergunta para o Qwen via Ollama"""
+    
     url = "http://localhost:11434/api/generate"
 
     # Dá uma "personalidade" de filósofo para o modelo
