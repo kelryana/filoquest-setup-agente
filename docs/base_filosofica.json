@@ -1,0 +1,26 @@
+[
+  {
+    "autor": "Immanuel Kant",
+    "obra": "Fundamentação da Metafísica dos Costumes",
+    "ano": 1785,
+    "escola": "Deontologia",
+    "secao": "Transição da filosofia moral popular para a metafísica dos costumes",
+    "texto": "Age apenas segundo aquela máxima através da qual possas ao mesmo tempo querer que ela se torne uma lei universal."
+  },
+  {
+    "autor": "Jeremy Bentham",
+    "obra": "Uma Introdução aos Princípios da Moral e da Legislação",
+    "ano": 1789,
+    "escola": "Utilitarismo",
+    "secao": "Capítulo I: Do Princípio da Utilidade",
+    "texto": "A natureza colocou a humanidade sob o governo de dois senhores soberanos, a dor e o prazer. Só a eles compete apontar o que devemos fazer, bem como determinar o que faremos."
+  },
+  {
+    "autor": "Aristóteles",
+    "obra": "Ética a Nicômaco",
+    "ano": -340,
+    "escola": "Ética das Virtudes",
+    "secao": "Livro II: Teoria Geral da Virtude",
+    "texto": "A virtude é, então, uma disposição de caráter relacionada com a escolha de ações e paixões, e que consiste numa mediania, isto é, a mediania relativa a nós, determinada por um princípio racional."
+  }
+]
