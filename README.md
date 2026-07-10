@@ -50,7 +50,7 @@ Este projeto oferece duas funcionalidades principais:
     ├── "Dilema do Bonde - Uma Jornada Etica.html"
     ├── "O Gabarito.html"
     ├── passagens.json       # (para quando for gerado gerado) Passagens extraídas
-    └── embeddings.json      # (para quandor for gerado) Embeddings das passagens
+    └── embeddings.json      # (para quando for gerado) Embeddings das passagens
 ```
 
 ---
@@ -182,7 +182,7 @@ Servidor REST que expõe o agente filósofo como uma API.
 python scripts/api_agente.py
 ```
 
-A API estará disponível em `http://localhost:8000`
+A API estará disponível em `http://localhost:8000 (no caso, use essa URL para testar o funcionamento da APi)`
 
 **Endpoints:**
 
@@ -195,7 +195,9 @@ A API estará disponível em `http://localhost:8000`
 
 1. Via navegador:
 ```
-http://localhost:8000/
+para voce ver a interface gráfica interativa do Swagger UI no FastAPI, você precisa acessar explicitamente o endpoint /docs. Nisso, voce pode testar diretamente os endpoints!
+Tente abrir este endereço no seu navegador:
+👉 http://localhost:8000/docs
 ```
 
 2. Via curl:
