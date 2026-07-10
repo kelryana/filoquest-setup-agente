@@ -391,7 +391,7 @@ Para usar o projeto completo:
 
 ---
 
-## ⚠️ Troubleshooting
+## ⚠️ Troubleshooting -- erros que voce pode identificar
 
 ### Ollama não conecta
 ```bash
@@ -444,7 +444,7 @@ Este projeto está sob licença aberta. Sinta-se livre para usar, modificar e di
 
 ---
 
-## 📞 Contato & Recursos
+## recursos
 
 - **Ollama**: https://ollama.com
 - **Qwen Model**: https://huggingface.co/Qwen
@@ -454,11 +454,3 @@ Este projeto está sob licença aberta. Sinta-se livre para usar, modificar e di
 - **Sentence-Transformers**: https://www.sbert.net
 
 ---
-
-<div align="center">
-
-**Feito com ❤️ e muita filosofia**
-
-⭐ Se gostou, deixe uma estrela!
-
-</div>
