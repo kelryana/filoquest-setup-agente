@@ -235,10 +235,10 @@ button:disabled { background-color: #bdc3c7; cursor: not-allowed; transform: non
     right: 0;
 }
 
-.sidebar-content-wrapper { padding: 60px 40px; }
+.sidebar-content-wrapper { padding: 100px 40px 60px; }
 .sidebar-icon { font-size: 3rem; margin-bottom: 20px; opacity: 0.8; }
 .info-sidebar h2 { color: #ffffff; font-size: 2.2rem; margin-bottom: 25px; line-height: 1.2; }
-.info-sidebar p { font-size: 1.1rem; line-height: 1.8; opacity: 0.95; }
+.info-sidebar p { font-size: 1.4rem; line-height: 1.8; opacity: 0.95; }
 
 .close-btn {
     position: absolute; top: 40px; right: 40px; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer; transition: transform 0.2s ease;
