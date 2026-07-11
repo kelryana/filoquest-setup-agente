@@ -103,14 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Lógica da Aba Lateral Dinâmica (Novo Feature)
+    // 2. Lógica da Aba Lateral Dinâmica e Efeito de "Empurrar" a tela
     const topicItems = document.querySelectorAll('.topic-item');
     const infoSidebar = document.getElementById('info-sidebar');
     const sidebarTitle = document.getElementById('sidebar-title');
     const sidebarContent = document.getElementById('sidebar-content');
     const closeSidebarBtn = document.getElementById('close-sidebar');
 
-    // Ao clicar num tópico, atualiza o conteúdo e abre a aba
+    // Ao clicar num tópico, atualiza o conteúdo, abre a aba e EMPURRA o site para a esquerda
     topicItems.forEach(item => {
         item.addEventListener('click', () => {
             const title = item.getAttribute('data-title');
@@ -119,23 +119,33 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebarTitle.textContent = title;
             sidebarContent.textContent = content;
             
-            // Adiciona a classe que faz a aba deslizar
+            // Adiciona a classe que faz a aba deslizar da direita
             infoSidebar.classList.add('open');
+            
+            // Adiciona a classe no body para empurrar todo o conteúdo para a esquerda
+            document.body.classList.add('aba-aberta');
         });
     });
 
     // Fechar aba pelo botão "X"
     closeSidebarBtn.addEventListener('click', () => {
         infoSidebar.classList.remove('open');
+        
+        // Remove a classe do body para a tela voltar ao centro
+        document.body.classList.remove('aba-aberta');
     });
 
     // Fechar aba ao clicar fora dela
     document.addEventListener('click', (evento) => {
-        // Se a aba estiver aberta e o clique não for dentro da aba nem num dos tópicos
+        // Se a aba estiver aberta e o clique não for dentro da aba nem num dos tópicos interativos
         if (infoSidebar.classList.contains('open') && 
             !infoSidebar.contains(evento.target) && 
             !evento.target.closest('.topic-item')) {
+            
             infoSidebar.classList.remove('open');
+            
+            // Remove a classe do body para a tela voltar ao centro
+            document.body.classList.remove('aba-aberta');
         }
     });
 });
