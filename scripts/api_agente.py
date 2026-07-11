@@ -11,13 +11,10 @@ from pathlib import Path
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Adicionar o diretório scripts ao path para importar busca_filosofica
+# Adicionar o diretório scripts ao path
 sys.path.insert(0, str(Path(__file__).parent))
-
-# Importa a sua classe de busca
 from busca_filosofica import BuscaFilosofica
 
-# Cria a aplicação FastAPI
 app = FastAPI(title="Agente Filósofo API")
 
 # Configura CORS
@@ -29,7 +26,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inicializar o buscador uma única vez (Verifica se o arquivo existe)
+# Inicializar o buscador
 logger.info("🔍 Inicializando buscador filosófico...")
 try:
     buscador = BuscaFilosofica('embeddings_filosofia.json')
@@ -38,7 +35,6 @@ except Exception as e:
     logger.warning(f"⚠️ Aviso: Buscador não pôde ser inicializado: {e}")
     buscador = None
 
-# Define o formato da pergunta
 class Pergunta(BaseModel):
     texto: str
 
@@ -46,13 +42,19 @@ def perguntar_ao_filosofo(pergunta: str, contexto: str = None) -> str:
     url = "http://localhost:11434/api/generate"
 
     if contexto:
-        prompt = f"""Você é um filósofo especialista em ética e filosofia moral.
+        # O SEGREDO ESTÁ AQUI: Mandamos a IA IGNORAR o conhecimento externo
+        prompt = f"""Você é um filósofo especialista.
+Você tem acesso ao seguinte trecho de texto filosófico:
 
-Você teve acesso a textos filosóficos relevantes para embasar seu conhecimento.
-Use o conteúdo desses textos para formar sua resposta, mas responda com suas próprias palavras, de forma natural, clara e didática, como se você tivesse estudado o assunto há anos. Não copie os textos literalmente.
-Use o seguinte contexto para responder:
-
+--- INICIO DO CONTEXTO ---
 {contexto}
+--- FIM DO CONTEXTO ---
+
+INSTRUÇÃO OBRIGATÓRIA:
+1. IGNORE completamente qualquer conhecimento prévio que você tenha sobre o assunto.
+2. Use EXCLUSIVAMENTE o texto fornecido no CONTEXTO acima para responder.
+3. Na sua resposta, faça uma citação direta (de pelo menos 3 palavras) do texto do contexto.
+4. Depois da citação, explique com suas palavras o que o autor quis dizer com aquilo.
 
 Pergunta: {pergunta}
 
@@ -68,7 +70,7 @@ Resposta:"""
         "model": "qwen2.5:3b",
         "prompt": prompt,
         "stream": False,
-        "temperature": 0.7
+        "temperature": 0.3
     }
 
     try:
@@ -92,7 +94,9 @@ def responder(pergunta: Pergunta):
     if buscador:
         try:
             logger.info(f"🔍 Buscando contexto para: '{pergunta.texto}'")
-            resultados_busca = buscador.busca_hibrida(pergunta.texto, top_k=3)
+            
+            # MODIFICAÇÃO: Mudamos de top_k=3 para top_k=1 (Apenas o melhor resultado)
+            resultados_busca = buscador.busca_hibrida(pergunta.texto, top_k=1)
 
             if resultados_busca:
                 contextos = []
@@ -100,7 +104,11 @@ def responder(pergunta: Pergunta):
                     fonte = resultado.get('source_file', 'Desconhecida')
                     texto = resultado.get('text', '')
                     score = resultado.get('score', 0)
-                    contextos.append(f"[Fonte {i}: {fonte}] (Score: {score:.4f})\n{texto}\n")
+                    
+                    # MODIFICAÇÃO: Limitamos o tamanho do texto enviado para 1000 caracteres
+                    texto_limitado = texto[:500]  
+                    
+                    contextos.append(f"[Fonte {i}: {fonte}] (Score: {score:.4f})\n{texto_limitado}\n")
 
                 contexto = "\n---\n".join(contextos)
                 logger.info(f"✅ Contexto encontrado: {len(contexto)} caracteres")
