@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agente Filósofo - FiloQuest</title>
     
     <!-- Fontes do Google: Merriweather (Títulos) e Sora (Textos) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="index_files/css2_E2F8.css" rel="stylesheet">
     
     <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index_files/style_E2F8.css">
 </head>
 <body>
     <div class="container">
         <!-- Cabeçalho -->
         <header class="animate-fade-down">
             <div class="header-content">
-                <img src="image_b16420.jpg" alt="Logo FiloQuest" class="logo-img">
+                <img src="index_files/image_b16420_E2F8.jpg" alt="Logo FiloQuest" class="logo-img">
                 <div class="title-group">
                     <h1>Agente Filósofo</h1>
                     <p class="subtitle">Reflexões e sabedoria através da inteligência artificial</p>
@@ -35,13 +35,13 @@
                 <!-- Livro 1 -->
                 <div class="livro-quadrado animate-fade-up delay-1">
                     <div>
-                        <h3 class="titulo-livro"><i class="fas fa-landmark"></i> Contexto<br>Histórico</h3>
+                        <h3 class="titulo-livro"><i class="fas fa-landmark"></i> Contexto Histórico<br></h3>
                         <p class="subtitulo-livro">Fundamentos da Filosofia</p>
                         <div class="barra-decorativa"></div>
                     </div>
                     <div class="rodape-livro">
                         <ul>
-                            <li class="topic-item" data-title="Sócrates & Platão" data-content="Sócrates focava no método dialético (maiêutica), questionando tudo para chegar à verdade. Seu discípulo, Platão, desenvolveu a Teoria das Ideias, afirmando que o mundo sensível é apenas uma cópia imperfeita do mundo inteligível.">Sócrates & Platão</li>
+                            <li class="topic-item" data-title="Sócrates &amp; Platão" data-content="Sócrates focava no método dialético (maiêutica), questionando tudo para chegar à verdade. Seu discípulo, Platão, desenvolveu a Teoria das Ideias, afirmando que o mundo sensível é apenas uma cópia imperfeita do mundo inteligível.">Sócrates &amp; Platão</li>
                             <li class="topic-item" data-title="Aristóteles" data-content="Aluno de Platão, Aristóteles foi mais empírico. Sistematizou diversas áreas do conhecimento, da lógica à biologia e ética, defendendo que a felicidade (eudaimonia) é o fim supremo da vida humana.">Aristóteles</li>
                             <li class="topic-item" data-title="Immanuel Kant" data-content="Filósofo iluminista fundamental. Na ética, propôs o 'Imperativo Categórico': aja apenas segundo uma máxima que você gostaria que se tornasse uma lei universal.">Immanuel Kant</li>
                             <li class="topic-item" data-title="Friedrich Nietzsche" data-content="Crítico feroz da moralidade tradicional e da religião. Famoso pelos conceitos de 'Morte de Deus', a 'Vontade de Potência' e o 'Übermensch' (Além-do-Homem), que cria seus próprios valores.">Friedrich Nietzsche</li>
@@ -52,7 +52,7 @@
                 <!-- Livro 2 -->
                 <div class="livro-quadrado animate-fade-up delay-2">
                     <div>
-                        <h3 class="titulo-livro"><i class="fas fa-lightbulb"></i> Tópicos<br>Comuns</h3>
+                        <h3 class="titulo-livro"><i class="fas fa-lightbulb"></i> Tópicos Comuns<br></h3>
                         <p class="subtitulo-livro">Temas para Reflexão</p>
                         <div class="barra-decorativa"></div>
                     </div>
@@ -71,11 +71,7 @@
             <section class="interaction-area animate-slide-up">
                 <div class="input-section">
                     <label for="pergunta"><i class="fas fa-question-circle"></i> Sua Pergunta:</label>
-                    <textarea
-                        id="pergunta"
-                        placeholder="Digite sua questão filosófica aqui..."
-                        rows="5"
-                    ></textarea>
+                    <textarea id="pergunta" placeholder="Digite sua questão filosófica aqui..." rows="5"></textarea>
                     <button id="btn-perguntar" onclick="enviarPergunta()">
                         <i class="fas fa-paper-plane"></i> Perguntar ao Filósofo
                     </button>
@@ -101,15 +97,7 @@
             </section>
         </main>
 
-        <!-- Rodapé -->
-        <footer class="animate-fade-up delay-3">
-            <div class="footer-icons">
-                <i class="fas fa-building-columns"></i>
-                <i class="fas fa-leaf"></i>
-            </div>
-            <p>Powered by Ollama & Qwen 2.5</p>
-            <p class="disclaimer">As respostas são geradas por IA e devem ser consideradas como reflexões, não como verdades absolutas.</p>
-        </footer>
+
     </div>
 
     <!-- Aba Lateral Dinâmica (Sidebar Direita) -->
@@ -124,6 +112,44 @@
         </div>
     </aside>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script src="index_files/script_E2F8.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
