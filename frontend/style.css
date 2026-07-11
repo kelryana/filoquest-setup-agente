@@ -11,7 +11,7 @@
     --cor-sidebar: #131b2b;
 
     /* DEFINIÇÃO DO TAMANHO DA ABA */
-    --tamanho-aba: 450px;
+    --tamanho-aba: 750px;
 }
 
 * {
@@ -38,7 +38,7 @@ body {
 
 /* Classe aplicada via JS que causa o efeito de empurrar o layout */
 body.aba-aberta .container {
-    padding-right: calc(var(--tamanho-aba) + 40px);
+    padding-right: 490px;
 }
 
 h1, h2, h3 {
@@ -241,9 +241,10 @@ button:disabled { background-color: #bdc3c7; cursor: not-allowed; transform: non
 .info-sidebar p { font-size: 1.1rem; line-height: 1.8; opacity: 0.95; }
 
 .close-btn {
-    position: absolute; top: 20px; right: 25px; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer; transition: transform 0.2s ease;
+    position: absolute; top: 40px; right: 40px; background: transparent; border: none; color: white; font-size: 2rem; cursor: pointer; transition: transform 0.2s ease;
+    padding: 0; margin: 0; outline: none;
 }
-.close-btn:hover { transform: scale(1.1) rotate(90deg); }
+.close-btn:hover, .close-btn:focus { transform: scale(1.1) rotate(90deg); background: transparent !important; background-color: transparent !important; box-shadow: none !important; color: white; outline: none; }
 
 /* --- Footer --- */
 footer {
