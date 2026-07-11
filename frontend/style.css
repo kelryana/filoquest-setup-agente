@@ -1,12 +1,11 @@
-/*--- frontend/style.css */
-/* Cores e vibe de "estudo filosófico" */
+/* Paleta de Cores baseada na Logo FiloQuest */
 :root {
-    --cor-fundo: #f5f1e8;        /* Bege claro, papel antigo */
-    --cor-primaria: #2c3e50;     /* Azul petróleo escuro */
-    --cor-secundaria: #8b7355;   /* Marrom suave */
-    --cor-destaque: #c9a961;     /* Dourado envelhecido */
-    --cor-texto: #3e3e3e;        /* Cinza escuro */
-    --cor-borda: #d4c5b0;        /* Bege médio */
+    --cor-fundo: #fdfbf7;        /* Bege bem claro e limpo */
+    --cor-primaria: #131b2b;     /* Azul Marinho Escuro da logo */
+    --cor-secundaria: #d9381e;   /* Vermelho/Laranja da logo */
+    --cor-texto: #2c3e50;        /* Cinza escuro para boa leitura */
+    --cor-borda: #e5e0d8;        /* Bege médio para bordas */
+    --cor-card-fundo: #ffffff;   /* Branco puro para os cartões */
     --cor-sucesso: #27ae60;
     --cor-erro: #c0392b;
 }
@@ -18,96 +17,216 @@
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Sora', sans-serif;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     line-height: 1.6;
     min-height: 100vh;
+    overflow-x: hidden; /* Previne scroll horizontal por causa da aba lateral */
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif;
+    color: var(--cor-primaria);
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-/* Header */
+/* --- Header --- */
 header {
-    text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--cor-borda);
+    display: flex;
+    justify-content: center;
 }
 
-.header-icon {
-    font-size: 3rem;
-    color: var(--cor-primaria);
-    margin-bottom: 10px;
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: var(--cor-primaria);
-    font-weight: normal;
-    letter-spacing: 2px;
+.logo-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.title-group h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
     margin-bottom: 5px;
 }
 
 .subtitle {
+    font-family: 'Merriweather', serif;
     font-style: italic;
-    color: var(--cor-secundaria);
+    color: #666;
     font-size: 1.1rem;
 }
 
-/* Input Section */
-.input-section {
-    background: white;
+/* --- NOVO: Layout Principal (Esquerda: Livros | Direita: Chat) --- */
+.main-layout {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+/* Coluna dos Livros */
+.left-books-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 350px; /* Largura fixa para a esquerda */
+    flex-shrink: 0;
+}
+
+/* --- O Efeito de Livro (Quadrado) --- */
+.livro-quadrado {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--cor-card-fundo);
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--cor-primaria);
+    
     border: 1px solid var(--cor-borda);
+    border-right: 14px solid #e0d9cc; 
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-livro {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin: 0 0 5px 0;
+    color: var(--cor-primaria);
+}
+
+.titulo-livro i {
+    color: var(--cor-secundaria);
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.subtitulo-livro {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-style: italic;
+    margin: 0;
+}
+
+.barra-decorativa {
+    width: 50px;
+    height: 5px;
+    background-color: var(--cor-secundaria);
+    margin-top: 15px;
+    border-radius: 3px;
+}
+
+/* --- ITENS DO LIVRO CLIcáveis COM RELEVO --- */
+.rodape-livro ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.topic-item {
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 6px;
+    color: var(--cor-texto);
+    cursor: pointer;
+    border-bottom: 1px dashed var(--cor-borda);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.topic-item:last-child {
+    border-bottom: none;
+}
+
+/* O Relevo (Hover) nos Tópicos */
+.topic-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-color: #ffffff;
+    box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.08);
+    color: var(--cor-secundaria);
+    border-bottom-color: transparent;
+    font-weight: 600;
+}
+
+/* --- Área Principal de Interação (Centro/Direita) --- */
+.interaction-area {
+    flex-grow: 1; /* Ocupa o restante do espaço */
+    max-width: 800px;
+}
+
+.input-section {
+    background: var(--cor-card-fundo);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--cor-borda);
+    margin-bottom: 30px;
 }
 
 .input-section label {
-    display: block;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    font-family: 'Merriweather', serif;
     color: var(--cor-primaria);
     margin-bottom: 15px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .input-section label i {
-    margin-right: 8px;
-    color: var(--cor-destaque);
+    margin-right: 10px;
+    color: var(--cor-secundaria);
 }
 
 textarea {
     width: 100%;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 1rem;
+    padding: 18px;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.05rem;
     border: 2px solid var(--cor-borda);
-    border-radius: 4px;
+    border-radius: 8px;
     resize: vertical;
-    transition: border-color 0.3s ease;
-    background-color: #faf8f5;
+    background-color: #faf9f6;
+    transition: all 0.3s ease;
 }
 
 textarea:focus {
     outline: none;
-    border-color: var(--cor-destaque);
+    border-color: var(--cor-secundaria);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(217, 56, 30, 0.1);
 }
 
 button {
-    margin-top: 15px;
-    padding: 12px 30px;
-    font-family: inherit;
+    margin-top: 20px;
+    padding: 14px 35px;
+    font-family: 'Sora', sans-serif;
     font-size: 1.1rem;
-    background-color: var(--cor-primaria);
+    font-weight: 600;
+    background-color: var(--cor-secundaria);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
@@ -116,45 +235,41 @@ button {
 }
 
 button:hover {
-    background-color: var(--cor-secundaria);
+    background-color: #c0311a;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-    transform: translateY(0);
+    box-shadow: 0 6px 15px rgba(217, 56, 30, 0.3);
 }
 
 button:disabled {
-    background-color: #95a5a6;
+    background-color: #bdc3c7;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
 }
 
-/* Loading */
 .loading {
     text-align: center;
-    padding: 30px;
-    color: var(--cor-secundaria);
-    font-size: 1.2rem;
+    padding: 40px;
+    color: var(--cor-primaria);
+    font-family: 'Merriweather', serif;
     font-style: italic;
+    font-size: 1.3rem;
 }
 
 .loading i {
-    font-size: 2rem;
-    margin-right: 10px;
-    color: var(--cor-destaque);
+    font-size: 2.5rem;
+    margin-right: 15px;
+    color: var(--cor-secundaria);
 }
 
-/* Resposta Container */
 .resposta-container {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
+    background: var(--cor-card-fundo);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cor-borda);
-    border-left: 4px solid var(--cor-destaque);
+    border-left: 5px solid var(--cor-primaria);
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .resposta-header {
@@ -167,82 +282,153 @@ button:disabled {
 }
 
 .resposta-header i {
-    font-size: 1.8rem;
-    color: var(--cor-destaque);
-}
-
-.resposta-header h2 {
-    font-size: 1.5rem;
-    color: var(--cor-primaria);
-    font-weight: normal;
+    font-size: 2rem;
+    color: var(--cor-secundaria);
 }
 
 .resposta-texto {
     font-size: 1.1rem;
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--cor-texto);
     white-space: pre-wrap;
 }
 
-/* Erro Container */
 .erro-container {
-    background-color: #fadbd8;
+    background-color: #fdf3f2;
     padding: 20px;
-    border-radius: 4px;
-    margin-top: 30px;
+    border-radius: 8px;
     border-left: 4px solid var(--cor-erro);
     display: flex;
     align-items: center;
     gap: 15px;
     color: var(--cor-erro);
+    font-weight: 600;
 }
 
-.erro-container i {
-    font-size: 1.5rem;
+/* --- ABA LATERAL DIREITA (FEATURE NOVA) --- */
+.info-sidebar {
+    position: fixed;
+    top: 0;
+    right: -450px; /* Escondido por padrão */
+    width: 400px;
+    max-width: 100vw;
+    height: 100vh;
+    background-color: var(--cor-secundaria); /* Cor vermelha do design */
+    color: #ffffff; /* Fonte Branca para contraste */
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Footer */
+/* Classe que ativa a aba */
+.info-sidebar.open {
+    right: 0;
+}
+
+.sidebar-content-wrapper {
+    padding: 60px 40px;
+}
+
+.sidebar-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.info-sidebar h2 {
+    color: #ffffff; /* Garante que o título seja branco */
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.info-sidebar p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+.close-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    background: transparent;
+    box-shadow: none;
+}
+
+/* --- Rodapé --- */
 footer {
     text-align: center;
-    margin-top: 50px;
-    padding-top: 20px;
+    margin-top: 70px;
+    padding-top: 30px;
     border-top: 1px solid var(--cor-borda);
-    color: var(--cor-secundaria);
-    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-size: 0.95rem;
 }
 
-footer i {
-    margin-right: 5px;
+.footer-icons {
+    font-size: 1.8rem;
+    color: var(--cor-borda);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .disclaimer {
     margin-top: 10px;
-    font-style: italic;
     font-size: 0.85rem;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
-/* Utility Classes */
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
+
+/* Animações CSS */
+.animate-fade-down { opacity: 0; animation: fadeDown 0.8s ease-out forwards; }
+.animate-fade-up { opacity: 0; animation: fadeUp 0.8s ease-out forwards; }
+.animate-slide-up { opacity: 0; transform: translateY(30px); animation: slideUp 0.6s ease-out forwards; }
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Responsividade */
-@media (max-width: 600px) {
-    .container {
-        padding: 20px 15px;
+@media (max-width: 950px) {
+    .main-layout {
+        flex-direction: column-reverse; /* Em telas menores, a interação vai para cima e os livros para baixo */
+        align-items: center;
     }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .input-section {
-        padding: 20px;
-    }
-
-    button {
+    .left-books-container {
         width: 100%;
-        justify-content: center;
+        max-width: 400px;
     }
+    .interaction-area {
+        width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .info-sidebar { width: 100vw; } /* Aba ocupa tela toda no celular */
+    .title-group h1 { font-size: 2.2rem; }
+    .input-section { padding: 20px; }
 }

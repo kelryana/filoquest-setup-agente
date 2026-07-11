@@ -42,19 +42,18 @@ def perguntar_ao_filosofo(pergunta: str, contexto: str = None) -> str:
     url = "http://localhost:11434/api/generate"
 
     if contexto:
-        # O SEGREDO ESTÁ AQUI: Mandamos a IA IGNORAR o conhecimento externo
-        prompt = f"""Você é um filósofo especialista.
-Você tem acesso ao seguinte trecho de texto filosófico:
+            prompt = f"""Você é um filósofo especialista.
+        Você tem acesso ao seguinte trecho de texto filosófico:
 
---- INICIO DO CONTEXTO ---
-{contexto}
---- FIM DO CONTEXTO ---
+        --- INICIO DO CONTEXTO ---
+        {contexto}
+        --- FIM DO CONTEXTO ---
 
-INSTRUÇÃO OBRIGATÓRIA:
-1. IGNORE completamente qualquer conhecimento prévio que você tenha sobre o assunto.
-2. Use EXCLUSIVAMENTE o texto fornecido no CONTEXTO acima para responder.
-3. Na sua resposta, faça uma citação direta (de pelo menos 3 palavras) do texto do contexto.
-4. Depois da citação, explique com suas palavras o que o autor quis dizer com aquilo.
+        INSTRUÇÃO OBRIGATÓRIA:
+        1. NÃO use o seu conhecimento interno sobre o filósofo.
+        2. Use APENAS as palavras do texto acima.
+        3. Na sua resposta, comece com a frase: "No texto fornecido, o autor diz que..." e cole uma citação de pelo menos 5 palavras do contexto.
+        4. Depois, explique essa citação com suas palavras.
 
 Pergunta: {pergunta}
 
