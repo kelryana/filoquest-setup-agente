@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agente Filósofo - FiloQuest</title>
-    
-    <!-- Fontes do Google: Merriweather (Títulos) e Sora (Textos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Cabeçalho -->
         <header class="animate-fade-down">
             <div class="header-content">
                 <img src="image_b16420.jpg" alt="Logo FiloQuest" class="logo-img">
@@ -25,129 +21,68 @@
             </div>
         </header>
 
-        <!-- Layout Principal: Livros à esquerda, Interação à direita -->
         <main class="main-layout">
-            
-            <!-- Coluna Esquerda: Livros -->
-            <aside class="left-books-container">
-                <!-- Livro 1 -->
-                <div class="livro-quadrado animate-fade-up delay-1">
+            <aside class="left-notepad-container">
+                <div class="bloco-notas animate-fade-up delay-1">
                     <div>
-                        <h3 class="titulo-livro"><i class="fas fa-landmark"></i> Contexto Histórico<br></h3>
-                        <p class="subtitulo-livro">Fundamentos da Filosofia</p>
-                        <div class="barra-decorativa"></div>
+                        <h3 class="titulo-bloco"><i class="fas fa-landmark"></i> Contexto Histórico</h3>
+                        <p class="subtitulo-bloco">Fundamentos da Filosofia</p>
                     </div>
-                    <div class="rodape-livro">
+                    <div class="conteudo-bloco">
                         <ul>
-                            <li class="topic-item" data-title="Sócrates &amp; Platão" data-content="Sócrates focava no método dialético (maiêutica), questionando tudo para chegar à verdade. Seu discípulo, Platão, desenvolveu a Teoria das Ideias, afirmando que o mundo sensível é apenas uma cópia imperfeita do mundo inteligível.">Sócrates &amp; Platão</li>
-                            <li class="topic-item" data-title="Aristóteles" data-content="Aluno de Platão, Aristóteles foi mais empírico. Sistematizou diversas áreas do conhecimento, da lógica à biologia e ética, defendendo que a felicidade (eudaimonia) é o fim supremo da vida humana.">Aristóteles</li>
-                            <li class="topic-item" data-title="Immanuel Kant" data-content="Filósofo iluminista fundamental. Na ética, propôs o 'Imperativo Categórico': aja apenas segundo uma máxima que você gostaria que se tornasse uma lei universal.">Immanuel Kant</li>
-
+                            <li class="topic-item" data-title="Sócrates & Platão" data-content="Sócrates focava no método dialético (maiêutica), questionando tudo para chegar à verdade. Seu discípulo, Platão, desenvolveu a Teoria das Ideias.">Sócrates & Platão</li>
+                            <li class="topic-item" data-title="Aristóteles" data-content="Aluno de Platão, Aristóteles foi mais empírico. Sistematizou diversas áreas do conhecimento, defendendo que a felicidade (eudaimonia) é o fim supremo da vida humana.">Aristóteles</li>
+                            <li class="topic-item" data-title="Immanuel Kant" data-content="Filósofo iluminista fundamental. Na ética, propôs o 'Imperativo Categórico'.">Immanuel Kant</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Livro 2 -->
-                <div class="livro-quadrado animate-fade-up delay-2">
+                <div class="bloco-notas animate-fade-up delay-2">
                     <div>
-                        <h3 class="titulo-livro"><i class="fas fa-lightbulb"></i> Tópicos Comuns<br></h3>
-                        <p class="subtitulo-livro">Temas para Reflexão</p>
-                        <div class="barra-decorativa"></div>
+                        <h3 class="titulo-bloco"><i class="fas fa-lightbulb"></i> Tópicos Comuns</h3>
+                        <p class="subtitulo-bloco">Temas para Reflexão</p>
                     </div>
-                    <div class="rodape-livro">
+                    <div class="conteudo-bloco">
                         <ul>
-                            <li class="topic-item" data-title="Ética e Moral" data-content="A moral refere-se aos costumes e regras de uma sociedade, enquanto a ética é a reflexão filosófica sobre a moral. Envolve questionar o que é o 'bem', o 'mal' e como devemos agir.">Ética e Moral</li>
-                            <li class="topic-item" data-title="O Conceito de Justiça" data-content="Uma discussão que permeia a filosofia desde Platão até Rawls. Trata sobre como distribuir direitos, deveres e recursos de forma equitativa na sociedade.">O Conceito de Justiça</li>
-                            <li class="topic-item" data-title="Teoria do Conhecimento" data-content="Também chamada de Epistemologia. Estuda a natureza, origem e os limites do que podemos conhecer. Pergunta-se: 'Como sabemos o que sabemos?' e 'O que é a verdade?'.">Teoria do Conhecimento</li>
-
+                            <li class="topic-item" data-title="Ética e Moral" data-content="A moral refere-se aos costumes de uma sociedade, enquanto a ética é a reflexão filosófica sobre ela.">Ética e Moral</li>
+                            <li class="topic-item" data-title="O Conceito de Justiça" data-content="Uma discussão que permeia a filosofia desde Platão até Rawls, sobre a distribuição equitativa de direitos.">O Conceito de Justiça</li>
+                            <li class="topic-item" data-title="Teoria do Conhecimento" data-content="Epistemologia. Estuda a natureza, origem e os limites do que podemos conhecer.">Teoria do Conhecimento</li>
                         </ul>
                     </div>
                 </div>
             </aside>
 
-            <!-- Coluna Direita (Centro): Área de Interação -->
             <section class="interaction-area animate-slide-up">
                 <div class="input-section">
                     <label for="pergunta"><i class="fas fa-question-circle"></i> Sua Pergunta:</label>
                     <textarea id="pergunta" placeholder="Digite sua questão filosófica aqui..." rows="5"></textarea>
-                    <button id="btn-perguntar" onclick="enviarPergunta()">
+                    <button class="btn-primary" id="btn-perguntar">
                         <i class="fas fa-paper-plane"></i> Perguntar ao Filósofo
                     </button>
                 </div>
 
-                <div id="loading" class="loading hidden">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <span>O filósofo está refletindo...</span>
-                </div>
-
+                <div id="loading" class="loading hidden"><i class="fas fa-spinner fa-spin"></i> <span>O filósofo está refletindo...</span></div>
                 <div id="resposta-container" class="resposta-container hidden">
-                    <div class="resposta-header">
-                        <i class="fas fa-scroll"></i>
-                        <h2>Resposta do Filósofo</h2>
-                    </div>
+                    <div class="resposta-header"><i class="fas fa-scroll"></i> <h2>Resposta do Filósofo</h2></div>
                     <div id="resposta-texto" class="resposta-texto"></div>
                 </div>
-
                 <div id="erro-container" class="erro-container hidden">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span id="erro-mensagem"></span>
+                    <i class="fas fa-exclamation-triangle"></i> <span id="erro-mensagem"></span>
                 </div>
             </section>
         </main>
-
-
     </div>
 
-    <!-- Aba Lateral Dinâmica (Sidebar Direita) -->
-    <aside id="info-sidebar" class="info-sidebar">
-        <button id="close-sidebar" class="close-btn" title="Fechar aba">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="sidebar-content-wrapper">
-            <i class="fas fa-book-open sidebar-icon"></i>
-            <h2 id="sidebar-title">Título</h2>
-            <p id="sidebar-content">Conteúdo explicativo aparecerá aqui...</p>
+    <!-- MODAL FLASHCARD (Antiga Sidebar) -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-flashcard">
+            <button id="close-modal" class="close-btn"><i class="fas fa-times"></i></button>
+            <i class="fas fa-book-open modal-icon"></i>
+            <h2 id="modal-title">Título</h2>
+            <p id="modal-content">Conteúdo explicativo aparecerá aqui...</p>
         </div>
-    </aside>
+    </div>
 
     <script src="script.js"></script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-
-</body></html>
+</body>
+</html>
