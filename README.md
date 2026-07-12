@@ -1,5 +1,5 @@
 
-# 🏛️ Agente Filósofo - FiloQuest
+# Agente Filósofo - FiloQuest
 <img width="1957" height="858" alt="image" src="https://github.com/user-attachments/assets/e45e875c-e154-45d8-8018-83e021110bc2" />
 <div align="center">
 
@@ -16,87 +16,7 @@ O **Agente Filósofo** é um sistema avançado de inteligência artificial que c
 
 O sistema permite que usuários façam perguntas sobre ética, moral, justiça e outros temas filosóficos, recebendo respostas contextualizadas baseadas em obras de filósofos como:
 
-- **Aristóteles** - Ética a Nicômaco
-- **Immanuel Kant** - Metafísica dos Costumes
-- **Jeremy Bentham** - Utilitarismo
-- **Twine Interactive Fiction** - Dilema do Bonde
-
 ---
-
-## 🎯 Principais Funcionalidades
-
-### ✨ Agente Filósofo Inteligente
-
-O coração do sistema é o **Agente Filósofo**, um assistente de IA especializado que:
-
-1. **Compreende Perguntas Complexas**: Processa questões filosóficas em linguagem natural
-2. **Busca Contexto Relevante**: Utiliza um sistema híbrido de busca para encontrar trechos relevantes nos textos filosóficos
-3. **Gera Respostas Fundamentadas**: Produz respostas baseadas no contexto encontrado, citando as fontes originais
-4. **Mantém Persona Filosófica**: Responde com o tom e profundidade adequados a questões filosóficas
-
-## 🏗️ Arquitetura do Sistema
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     FRONTEND (HTML/CSS/JS)                   │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────┐ │
-│  │ Contexto    │  │ Área de      │  │ Modal               │ │
-│  │ Histórico   │  │ Interação    │  │ Flashcard           │ │
-│  └─────────────┘  └──────────────┘  └─────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
-                            ↓ HTTP POST /perguntar
-┌─────────────────────────────────────────────────────────────┐
-│                  API FastAPI (api_agente.py)                 │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │  Endpoint: POST /perguntar                           │   │
-│  │  1. Recebe pergunta do usuário                       │   │
-│  │  2. Chama BuscaFilosofica.busca_hibrida()            │   │
-│  │  3. Monta contexto com fontes                        │   │
-│  │  4. Envia para LLM (Ollama/Qwen)                     │   │
-│  │  5. Retorna resposta + fontes                        │   │
-│  └──────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│              BUSCA FILOSÓFICA (busca_filosofica.py)          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │ Busca RAG   │  │ Busca GREP  │  │ Busca Híbrida       │ │
-│  │ (Semantic)  │  │ (Keywords)  │  │ (Weighted Combo)    │ │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘ │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    MODELO DE LINGUAGEM                       │
-│                    Ollama + Qwen 2.5 3B                      │
-│  ┌──────────────────────────────────────────────────────┐   │
-│  │  Prompt Especializado:                               │   │
-│  │  - Recebe contexto dos textos filosóficos            │   │
-│  │  - Instruções para citar fontes                      │   │
-│  │  - Gera resposta fundamentada                        │   │
-│  └──────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🚀 Como Funciona o Agente Filósofo
-
-### Fluxo de Processamento
-
-```mermaid
-graph LR
-    A[Usuário faz pergunta] --> B[API recebe pergunta]
-    B --> C[Busca Híbrida no corpus filosófico]
-    C --> D{Contexto encontrado?}
-    D -->|Sim| E[Monta contexto com citações]
-    D -->|Não| F[Prossegue sem contexto]
-    E --> G[Envia prompt para Qwen via Ollama]
-    F --> G
-    G --> H[LLM gera resposta fundamentada]
-    H --> I[Retorna resposta + fontes]
-    I --> J[Exibe na interface web]
-```
-
 ### Detalhamento do Pipeline
 
 #### 1. Recepção da Pergunta
