@@ -51,15 +51,7 @@ Pergunta: {pergunta}
 """
 ```
 
-#### 4. Geração da Resposta
-```python
-response = requests.post(
-    "http://localhost:11434/api/generate",
-    json={"model": "qwen2.5:3b", "prompt": prompt, "temperature": 0.3}
-)
-```
-
-#### 5. Retorno Estruturado
+#### 4. Retorno Estruturado
 ```json
 {
   "pergunta": "O que é justiça?",
