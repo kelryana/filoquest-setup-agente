@@ -107,7 +107,7 @@ response = requests.post(
 ### Passos
 
 ```bash
-cd /workspace
+cd / seu workspace (entre no seu workspace para clonar o repo)
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
