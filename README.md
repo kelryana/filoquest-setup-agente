@@ -5,8 +5,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-
 
 </div>
 
